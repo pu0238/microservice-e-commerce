@@ -16,7 +16,6 @@ export class ClothingProductResolver {
   getClothingProducts(
     @Args('quantity', { nullable: true }) quantity?: number,
   ): Observable<ClothingProduct> {
-    console.log(12)
     const pattern = { cmd: 'getClothingProducts' };
     return this.client.send(pattern, quantity || -1);
   }

@@ -14,7 +14,6 @@ export class ClothingController {
 
   @MessagePattern({ cmd: 'getClothingProducts' })
   getProducts(quantity: number): ClothingProduct[] {
-    console.log(quantity);
     return this.clothingService.getProducts(quantity);
   }
 
