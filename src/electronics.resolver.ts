@@ -1,8 +1,7 @@
 import { Inject } from '@nestjs/common';
-import { AppService } from './app.service';
 import { ELECTRONICS_SERVICE, products } from './microservices/electronics/electronics.constants';
 import { ClientProxy } from '@nestjs/microservices';
-import { Observable, from, toArray } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { ElectronicsProduct } from './microservices/electronics/electronics.entity';
 import { CreateElectronicsInput } from './dto/create-electronics-input';
@@ -11,7 +10,6 @@ import { CreateElectronicsInput } from './dto/create-electronics-input';
 export class ElectronicsProductResolver {
   constructor(
     @Inject(ELECTRONICS_SERVICE) private readonly client: ClientProxy,
-    private readonly appService: AppService,
   ) {}
 
   @Query((_returns) => [ElectronicsProduct])

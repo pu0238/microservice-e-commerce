@@ -42,4 +42,8 @@ export class ClothingService {
     this.products.push(product);
     return product
   }
+
+  search(text: string): ClothingProduct[]{
+    return this.products.filter(el => el.name.toLowerCase().includes(text));
+  }
 }

@@ -22,11 +22,19 @@ type ClothingProduct {
   image: String!
 }
 
+type SearchResult {
+  id: ID!
+  name: String!
+  image: String!
+  source: String!
+}
+
 type Query {
   getClothingProducts(quantity: Float): [ClothingProduct!]!
   getClothingProduct(id: String!): ClothingProduct!
   getElectronicsProducts(quantity: Float): [ElectronicsProduct!]!
   getElectronicsProduct(id: String!): ElectronicsProduct!
+  searchProduct(text: String!, quantity: Float): [SearchResult!]!
 }
 
 type Mutation {

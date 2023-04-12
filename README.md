@@ -1,30 +1,4 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# E-commerce
 
 ## Installation
 
@@ -45,29 +19,179 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## The content of the task
+Site, enables users to buy products from across two categories: 
+- electronics ✔️
+- clothing ✔️
 
-```bash
-# unit tests
-$ npm run test
+Each category should have its own nestjs microservice that manages the products within that category. ✔️
 
-# e2e tests
-$ npm run test:e2e
+Design and implement single GraphQL API that allows customers to browse and search for products (by product name or part of the name) across all categories.✔️
 
-# test coverage
-$ npm run test:cov
+You need to implement these two micro services as described above and for the API, only the search api as described above (and whatever needed for this task)
+prepare mock data for products ( 20 products for each category in its own micro service) ✔️
+
+## Example GraphQL queries and mutations
+
+GraphQL playground: http://[::1]:4000/graphql
+
+### Clothing
+
+Get all products
+```
+{
+  getClothingProducts{
+    id,
+    name
+  }
+}
 ```
 
-## Support
+Get specific products quentity
+```
+{
+  getClothingProducts(quantity: 3){
+    id,
+    name
+  }
+}
+```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Get product by id
+```
+{
+  getClothingProduct(id: "da1bfc63-8fc6-4b61-a21b-4f4c3a8fbf84"){
+    id,
+    name
+  }
+}
+```
 
-## Stay in touch
+Add new product
+```
+mutation {
+  createClothingProduct(input: {
+    name: "Jeansy straight fit"
+  	description: "Blue jeans"
+  	category: "Jeansy"
+  	price: 99.99
+  	image: "https://example.com/blue-jeans "
+  }) {
+    id,
+    name
+  }
+}
+```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+Edit product
+```
+mutation {
+  updateClothingProduct(
+  id: "bc5a56cf-5402-4492-8fe8-40eef720e18d",
+  input: {
+    name: "Jeansy straight fit"
+  	description: "Blue jeans"
+  	category: "Jeansy"
+  	price: 69.99
+  	image: "https://example.com/blue-jeans "
+  }) {
+    id,
+    name,
+    price
+  }
+}
+```
 
-## License
+Delete product
+```
+mutation {
+  deleteClothingProduct(id: "da1bfc63-8fc6-4b61-a21b-4f4c3a8fbf84")
+}
+```
 
-Nest is [MIT licensed](LICENSE).
+### Electronics
+
+Get all products
+```
+{
+  getElectronicsProducts{
+    id,
+    name
+  }
+}
+```
+
+Get specific products quentity
+```
+{
+  getElectronicsProducts(quantity: 3){
+    id,
+    name
+  }
+}
+```
+
+Get product by id
+```
+{
+  getElectronicsProduct(id: "89a8c47d-2a56-4c53-92f1-83c19b0f77c1"){
+    id,
+    name
+  }
+}
+```
+
+Add new product
+```
+mutation {
+  createElectronicsProduct(input: {
+    name: "Apple iPhone SE"
+  	description: "Red iPhone"
+  	category: "Phone"
+  	price: 1209.99
+  	image: "https://example.com/red-iphone "
+  }) {
+    id,
+    name
+  }
+}
+```
+
+Edit product
+```
+mutation {
+  updateElectronicsProduct(
+  id: "ae9fb7a8-be44-4457-9ffe-9d4870faa170",
+  input: {
+    name: "Apple iPhone SE"
+  	description: "Red iPhone"
+  	category: "Phone"
+  	price: 129.99
+  	image: "https://example.com/red-iphone "
+  }) {
+    id,
+    name,
+    price
+  }
+}
+```
+
+Delete product
+```
+mutation {
+  deleteElectronicsProduct(id: "ae9fb7a8-be44-4457-9ffe-9d4870faa170")
+}
+```
+
+### Search
+
+```
+{
+  searchProduct(text: "i"){
+    name,
+    id,
+    image,
+    source
+  }
+}
+```

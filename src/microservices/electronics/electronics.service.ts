@@ -42,4 +42,8 @@ export class ElectronicsService {
     this.products.push(product);
     return product
   }
+
+  search(text: string): ElectronicsProduct[]{
+    return this.products.filter(el => el.name.toLowerCase().includes(text));
+  }
 }

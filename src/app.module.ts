@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ElectronicsModule } from './microservices/electronics/electronics.module';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ELECTRONICS_SERVICE } from './microservices/electronics/electronics.constants';
@@ -11,6 +9,8 @@ import { ElectronicsProductResolver } from './electronics.resolver';
 import { ClothingProductResolver } from './clothing.resolver';
 import { CLOTHING_SERVICE } from './microservices/clothing/clothing.constants';
 import { ClothingModule } from './microservices/clothing/clothing.module';
+import { SearchResolver } from './search.resolver';
+import { SearchService } from './search.service';
 
 @Module({
   imports: [
@@ -34,8 +34,12 @@ import { ClothingModule } from './microservices/clothing/clothing.module';
       },
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService, ClothingProductResolver, ElectronicsProductResolver],
+  controllers: [],
+  providers: [
+    SearchService,
+    ClothingProductResolver,
+    ElectronicsProductResolver,
+    SearchResolver,
+  ],
 })
 export class AppModule {}
-

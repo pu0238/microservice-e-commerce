@@ -3,6 +3,7 @@ import { ClientProxy, MessagePattern } from '@nestjs/microservices';
 import { ELECTRONICS_SERVICE } from './electronics.constants';
 import { ElectronicsService } from './electronics.service';
 import { ElectronicsProduct } from './electronics.entity';
+import { SearchResult } from 'src/dto/search-result';
 
 @Controller()
 export class ElectronicsController {
@@ -34,5 +35,16 @@ export class ElectronicsController {
   @MessagePattern({ cmd: 'removeElectronicsProduct' })
   removeProduct(id: string): string{
     return this.electronicsService.removeProduct(id);
+  }
+
+  @MessagePattern({ cmd: 'searchElectronicsProduct' })
+  search(text: string): SearchResult[]{
+    const searchResult = this.electronicsService.search(text);
+    return searchResult.map((el) => ({
+      id: el.id,
+      name: el.name,
+      image: el.image,
+      source: 'electronics',
+    }));
   }
 }

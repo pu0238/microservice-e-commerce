@@ -1,5 +1,4 @@
 import { Inject } from '@nestjs/common';
-import { AppService } from './app.service';
 import { ClientProxy } from '@nestjs/microservices';
 import { Observable, from, toArray } from 'rxjs';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
@@ -11,7 +10,6 @@ import { CreateElectronicsInput } from './dto/create-electronics-input';
 export class ClothingProductResolver {
   constructor(
     @Inject(CLOTHING_SERVICE) private readonly client: ClientProxy,
-    private readonly appService: AppService,
   ) {}
 
   @Query((_returns) => [ClothingProduct])
