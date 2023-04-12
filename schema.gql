@@ -1,0 +1,47 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @upper on FIELD_DEFINITION
+
+type ElectronicsProduct {
+  id: ID!
+  name: String!
+  description: String!
+  category: String!
+  price: Float!
+  image: String!
+}
+
+type ClothingProduct {
+  id: ID!
+  name: String!
+  description: String!
+  category: String!
+  price: Float!
+  image: String!
+}
+
+type Query {
+  getClothingProducts(quantity: Float): [ClothingProduct!]!
+  getClothingProduct(id: String!): ClothingProduct!
+  getElectronicsProducts(quantity: Float): [ElectronicsProduct!]!
+  getElectronicsProduct(id: String!): ElectronicsProduct!
+}
+
+type Mutation {
+  createClothingProduct(input: CreateElectronicsInput!): ClothingProduct!
+  updateClothingProduct(id: String!, input: CreateElectronicsInput!): ClothingProduct!
+  deleteClothingProduct(id: String!): String!
+  createElectronicsProduct(input: CreateElectronicsInput!): ElectronicsProduct!
+  updateElectronicsProduct(id: String!, input: CreateElectronicsInput!): ElectronicsProduct!
+  deleteElectronicsProduct(id: String!): String!
+}
+
+input CreateElectronicsInput {
+  name: String!
+  description: String!
+  category: String!
+  price: Float!
+  image: String!
+}
