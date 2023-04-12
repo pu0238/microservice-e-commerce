@@ -2,6 +2,8 @@
 
 ## Installation
 
+node version: v16.15.1
+
 ```bash
 $ npm install
 ```
